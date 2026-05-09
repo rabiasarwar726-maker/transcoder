@@ -8,6 +8,7 @@ const os = require("os");
 
 const ffmpegPath = process.env.FFMPEG_PATH || ffmpegStatic;
 ffmpeg.setFfmpegPath(ffmpegPath);
+
 const app = express();
 app.use(express.json({ limit: "50mb" }));
 
@@ -79,7 +80,6 @@ function transcodeVideo(inputPath, outputDir) {
         "-use_timeline", "1",
         "-use_template", "1",
         "-seg_duration", "4",
-        "-adaptation_sets", "id=0,streams=v id=1,streams=a",
         "-f", "dash",
       ])
       .output(outputManifest)
