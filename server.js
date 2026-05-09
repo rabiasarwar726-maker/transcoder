@@ -6,8 +6,8 @@ const fs = require("fs");
 const path = require("path");
 const os = require("os");
 
-ffmpeg.setFfmpegPath(ffmpegStatic);
-
+const ffmpegPath = process.env.FFMPEG_PATH || ffmpegStatic;
+ffmpeg.setFfmpegPath(ffmpegPath);
 const app = express();
 app.use(express.json({ limit: "50mb" }));
 
